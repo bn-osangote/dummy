@@ -1,0 +1,35 @@
+name: GitHub actions
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  update-dummy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2 #changing the action
+    
+    - name: Display Git Config
+      run: |
+        git config --global --list || true
+
+    - name: Display Repository Status
+      run: |
+        git status
+
+    - name: Set up Git
+      run: |
+        git config --global user.email "osangote@barracuda.com"
+        git config --global user.name "bn-osangote"
+    
+    - name: Push to Dummy Repository
+      run: |
+        git remote add dummy-repo https://${{ secrets.NEW_TOKEN }}@github.com/bn-osangote/dummy.git
+        git push dummy-repo HEAD:master
