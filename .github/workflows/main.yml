@@ -31,5 +31,5 @@ jobs:
     
     - name: Push to Dummy Repository
       run: |
-        git remote add dummy-repo https://${{ secrets.NEW_TOKEN }}@github.com/bn-osangote/dummy.git
+        git remote add dummy-repo https://${{ secrets.NEW_TOKEN }}@github.com/bn-osangote/test_github_actions.git
         git push dummy-repo HEAD:master
